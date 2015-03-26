@@ -66,9 +66,22 @@ module Enumerable
         end
         map
     end
+    
+    def my_inject(initial = nil)
+        initial = self[0] if initial.nil?
+        memo = initial
+        self.my_each do |n|
+            memo = yield(memo, n)    
+        end
+        memo
+    end
 end
 
-test = ["a", "b", "c"]
-test = test.my_map do |letter|
-    letter + "*"
+def multiply_els(array)
+    array.my_inject(2) do |product, n|
+        product * n       
+    end
 end
+
+array = [1, 2, 3]
+puts multiply_els(array)
