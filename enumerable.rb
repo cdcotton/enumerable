@@ -12,8 +12,17 @@ module Enumerable
         end
         self
     end
+    
+    def my_select
+        selection = []
+        self.my_each do |n|
+            selection << n if yield n   
+        end
+        selection
+    end    
 end
+
 test = ["a", "b", "c"]
-test.my_each_with_index do |letter, index|
-    print letter + " -#{index}- "
+test.my_select do |letter|
+    letter == "a"
 end
