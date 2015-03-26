@@ -37,11 +37,20 @@ module Enumerable
         end
         any
     end
+    
+    def my_none?
+        any = false
+        self.my_each do |n|
+            met = yield n
+            any = met if met
+        end
+        !any  
+    end
 end
 
 test = ["a", "b", "c"]
-any = test.my_any? do |letter|
+none = test.my_none? do |letter|
     letter == "a"
 end
 
-puts any
+puts none
