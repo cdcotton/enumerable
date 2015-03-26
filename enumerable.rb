@@ -19,10 +19,20 @@ module Enumerable
             selection << n if yield n   
         end
         selection
-    end    
+    end
+    
+    def my_all?
+        all = false
+        self.my_each do |n|
+            all = yield n    
+        end
+        all
+    end
 end
 
 test = ["a", "b", "c"]
-test.my_select do |letter|
+all = test.my_all? do |letter|
     letter == "a"
 end
+
+puts all
