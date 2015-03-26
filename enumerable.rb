@@ -28,11 +28,20 @@ module Enumerable
         end
         all
     end
+    
+    def my_any?
+        any = false
+        self.my_each do |n|
+            met = yield n
+            any = met if met
+        end
+        any
+    end
 end
 
 test = ["a", "b", "c"]
-all = test.my_all? do |letter|
+any = test.my_any? do |letter|
     letter == "a"
 end
 
-puts all
+puts any
