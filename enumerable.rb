@@ -58,12 +58,17 @@ module Enumerable
         end
         count
     end
+    
+    def my_map
+        map = []
+        self.my_each do |n|
+            map << yield(n)    
+        end
+        map
+    end
 end
 
 test = ["a", "b", "c"]
-count = test.my_count do |letter|
-    letter == "a"
+test = test.my_map do |letter|
+    letter + "*"
 end
-
-puts count
-puts test.my_count
