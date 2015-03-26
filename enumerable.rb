@@ -46,11 +46,24 @@ module Enumerable
         end
         !any  
     end
+    
+    def my_count
+        count = 0
+        self.my_each do |n|
+            if block_given?
+                count += 1 if yield n
+            else
+                count += 1
+            end
+        end
+        count
+    end
 end
 
 test = ["a", "b", "c"]
-none = test.my_none? do |letter|
+count = test.my_count do |letter|
     letter == "a"
 end
 
-puts none
+puts count
+puts test.my_count
